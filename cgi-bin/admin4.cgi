@@ -26,11 +26,11 @@ def render_elections(elections, status):
         if elections[date]['status'] == status:
             eid = convert_date_to_id(date)
             if status == 'open':
-                elections_category.append('<li>Election ID {}: {} <a href="admin.cgi?action=closed&id={}">Close</a>'.format(eid, date, eid))
+                elections_category.append('<li>Election ID {}: {} <a href="admin4.cgi?action=closed&id={}">Close</a>'.format(eid, date, eid))
             elif status == 'closed':
-                elections_category.append('<li>Election ID {}: {} <a href="admin.cgi?action=open&id={}">Open</a> <a href="admin.cgi?action=published&id={}">Publish</a>'.format(eid, date, eid, eid))
+                elections_category.append('<li>Election ID {}: {} <a href="admin4.cgi?action=open&id={}">Open</a> <a href="admin4.cgi?action=published&id={}">Publish</a>'.format(eid, date, eid, eid))
             else:
-                elections_category.append('<li>Election ID {}: {} <a href="admin.cgi?action=deleted&id={}">Delete</a>'.format(eid, date, eid))
+                elections_category.append('<li>Election ID {}: {} <a href="admin4.cgi?action=deleted&id={}">Delete</a>'.format(eid, date, eid))
 
             elections_category.append('<ul>')
             for oid in range(0, len(elections[date]['offices'])):
@@ -185,14 +185,14 @@ except subprocess.CalledProcessError as e:
     print('<code>')
     print(e.output.decode('utf-8'), end="")
     print('</code>')
-    print('<br><a href="admin.cgi">Reload Interface</a>')
+    print('<br><a href="admin4.cgi">Reload Interface</a>')
     print('<br><a href="home.cgi">Return to Homepage</a>')
 except Exception as e:
     print('<br><b>Error rendering interface:</b>')
     print('<code>')
     print(e)
     print('</code>')
-    print('<br><a href="admin.cgi">Reload Interface</a>')
+    print('<br><a href="admin4.cgi">Reload Interface</a>')
     print('<br><a href="home.cgi">Return to Homepage</a>')
     raise e
 

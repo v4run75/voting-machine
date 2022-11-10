@@ -60,7 +60,7 @@ print("Cache-Control: no-store, must-revalidate")
 print()
 print('<link rel="stylesheet" href="https://spar.isi.jhu.edu/teaching/443/main.css">')
 print('<h2 id="dlobeid-etovucca-voting-machine">DLOBEID EtovUcca Voting Machine</h2>')
-print('<h1 id="admin3">admin3 Interface</h1>')
+print('<h1 id="admin">Admin Interface</h1>')
 form = cgi.FieldStorage()
 
 
@@ -88,8 +88,9 @@ try:
                 subprocess.check_output([PATH_TO_MACHINE, 'close-election', form.getvalue('id')])
             if form.getvalue('action') == 'published':
                 #open new page
-                print('<br><a href="results.cgi">View election results</a>')
-                #subprocess.check_output([PATH_TO_MACHINE, 'publish-election', form.getvalue('id')])
+                C['elec-id']= form.getvalue('id')
+                print('<br><a href="results.cgi">View election results <br></a>')
+                subprocess.check_output([PATH_TO_MACHINE, 'publish-election', form.getvalue('id')])
             if form.getvalue('action') == 'deleted':
                 subprocess.check_output([PATH_TO_MACHINE, 'delete-election', form.getvalue('id')])
             print('<b>Successfully set election {} to "{}".</b>'.format(form.getvalue('id'), form.getvalue('action')))
@@ -198,4 +199,6 @@ except Exception as e:
     raise e
 
 
-  
+
+
+

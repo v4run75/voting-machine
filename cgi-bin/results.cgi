@@ -21,6 +21,7 @@ render_results() {
     echo "<link rel='stylesheet' href='https://spar.isi.jhu.edu/teaching/443/main.css'>"
     echo "<body>"
     echo "<p> Election Results: </p>"
+    echo $HTTP_COOKIE
     echo "<p><a href='./home.cgi'>Return home</a></p>"
     echo "</body>"
 }
