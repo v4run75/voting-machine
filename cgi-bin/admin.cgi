@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import urllib.parse
 import cgi
 import subprocess
 import json
@@ -100,7 +101,9 @@ try:
             print('<b>Successfully added {} to election {}</b>'.format(form.getvalue('addOffice'), form.getvalue('election')))
         elif 'addCandidate' in form:
             subprocess.check_output([PATH_TO_MACHINE, 'add-candidate', form.getvalue('office'), form.getvalue('addCandidate')])
-            print('<b>Successfully added candidate {} to office {}</b>'.format(form.getvalue('addCandidate'), form.getvalue('office')))
+            encodedStr = form.getvalue("addCandidate")
+            decodedStr = urllib.parse.unquote(encodedStr)
+            print('<b>Successfully added candidate {} to office {}</b>'.format(decodedStr, form.getvalue('office')))
         elif 'addZip' in form:
             subprocess.check_output([PATH_TO_MACHINE, 'add-zip', form.getvalue('office'), form.getvalue('addZip')])
             print('<b>Successfully added ZIP {} to office {}</b>'.format(form.getvalue('addZip'), form.getvalue('office')))
